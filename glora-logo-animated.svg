@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="Glora Logo Animé">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#121212"/>
+      <stop offset="100%" stop-color="#060606"/>
+    </linearGradient>
+    <linearGradient id="strokeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="60%" stop-color="#F4F4F1"/>
+      <stop offset="100%" stop-color="#C5C5C2"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <radialGradient id="ambientHalo" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.08)"/>
+      <stop offset="70%" stop-color="rgba(255,255,255,0.01)"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+
+  <style>
+    .bg { fill: url(#bgGrad); }
+    .halo {
+      animation: pulseHalo 4s ease-in-out infinite alternate;
+      transform-origin: 256px 205px;
+    }
+    .echo-path {
+      opacity: 0.18;
+      stroke-dasharray: 6 6;
+      animation: spinEcho 24s linear infinite;
+      transform-origin: 256px 205px;
+    }
+    .main-path {
+      stroke-dasharray: 620;
+      stroke-dashoffset: 620;
+      animation: drawStroke 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+                 pulseGlow 3.5s ease-in-out 2.3s infinite alternate;
+    }
+    .brand-title {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+    }
+    .brand-sub {
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 1.5s forwards;
+    }
+    @keyframes drawStroke {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes pulseGlow {
+      from { filter: drop-shadow(0 0 4px rgba(255,255,255,0.2)); }
+      to { filter: drop-shadow(0 0 16px rgba(255,255,255,0.6)); }
+    }
+    @keyframes pulseHalo {
+      from { transform: scale(0.92); opacity: 0.5; }
+      to { transform: scale(1.08); opacity: 0.9; }
+    }
+    @keyframes spinEcho {
+      to { transform: rotate(360deg); }
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+
+  <!-- Fond squircle sombre -->
+  <rect class="bg" width="512" height="512" rx="36"/>
+  <rect width="512" height="512" rx="36" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+
+  <!-- Halo d'ambiance -->
+  <circle class="halo" cx="256" cy="205" r="160" fill="url(#ambientHalo)"/>
+
+  <!-- Tracé écho géométrique subtil en arrière-plan -->
+  <path class="echo-path"
+        d="M 355 147 L 256 90 L 157 147 L 157 263 L 256 320 L 355 263 L 355 205"
+        fill="none" stroke="#FFFFFF" stroke-width="2"/>
+
+  <!-- Tracé principal Glora en G hexagonal -->
+  <path class="main-path"
+        d="M 339.1 157 L 256 109 L 172.9 157 L 172.9 253 L 256 301 L 339.1 253 L 339.1 205 H 269"
+        fill="none"
+        stroke="url(#strokeGrad)"
+        stroke-width="26"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        filter="url(#glow)"/>
+
+  <!-- Typographie avec micro-animation d'apparition -->
+  <text class="brand-title" x="256" y="396" text-anchor="middle" fill="#FFFFFF"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-size="44" font-weight="700" letter-spacing="14">GLORA</text>
+  <text class="brand-sub" x="256" y="428" text-anchor="middle" fill="#8A8A8A"
+        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="500" letter-spacing="5">CRÉATION DE SITES WEB</text>
+</svg>
+
